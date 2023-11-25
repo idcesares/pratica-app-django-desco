@@ -1,0 +1,29 @@
+{% extends 'livros/base.html' %}
+
+{% block content %}
+<h2>Lista de Livros</h2>
+<a href="{% url 'adicionar_livro' %}" class="btn btn-primary mb-3">Adicionar Novo Livro</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>ISBN</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for livro in livros %}
+        <tr>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.autor }}</td>
+            <td>{{ livro.isbn }}</td>
+            <td>
+                <a href="{% url 'editar_livro' livro.id %}" class="btn btn-secondary">Editar</a>
+                <a href="{% url 'deletar_livro' livro.id %}" class="btn btn-danger">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
